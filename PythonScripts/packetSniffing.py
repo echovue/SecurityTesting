@@ -14,17 +14,17 @@ def get_mac_addr(bytes_addr):
 
 def main():
     conn = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.ntohs(3))
-#    conn.bind(("172.16.0.111", 80))
-#    conn.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
-#    conn.ioctl(socket.SIO_RCVALL, socket.RCVALL_ON)
+    conn.bind(("172.16.0.111", 80))
+    conn.setsockopt(socket.IPPROTO_IP, socket.IP_HDRINCL, 1)
+    conn.ioctl(socket.SIO_RCVALL, socket.RCVALL_ON)
 
     while True:
         raw_data, addr = conn.recvfrom(65535)
         dest_mac, src_mac, eth_proto, data = ethernet_frame(raw_data)
-        if eth_proto == 8:
-            print('\nEthernet Frame:')
-            print('Destination: {}, Source: {}, Protocol: {}'.format(dest_mac, src_mac, eth_proto))
-            print(data)
+       # if eth_proto == 8:
+        print('\nEthernet Frame:')
+        print('Destination: {}, Source: {}, Protocol: {}'.format(dest_mac, src_mac, eth_proto))
+        print(data)
 
 
 if __name__ == "__main__":
