@@ -1,4 +1,4 @@
-import socket, threading
+import socket
 from concurrent import futures
 
 def check_port(targetIp, portNumber, timeout):
