@@ -34,7 +34,7 @@ def checksum(data):
 def main():
     packet = icmp()
     print(packet)
-    s = socket.socket(socket.AFF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
+    s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
     s.sendto(packet, ("172.16.0.111", 80))
     print('Sent')
 
