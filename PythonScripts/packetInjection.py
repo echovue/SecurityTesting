@@ -12,7 +12,7 @@ def icmp():
     id = randint(0, 0xFFFF)
     seq = 1
     data = struct.pack("!BBHHH", type, code, chksum, id, seq)
-    print('Data: {}', data)
+    print('Data: {}'.format(data))
     real_chksum = checksum(data)
     icmp_pkt = struct.pack("!BBHHH", type, code, socket.htson(real_chksum), id, seq)
     return icmp_pkt
@@ -22,7 +22,7 @@ def checksum(data):
     s = 0
     n = len(data) % 2
     for i in range(0, len(data) - n, 2):
-        s += ord(data[i]) + (ord(data[i + 1]) << 8)
+        s += data[i] + (data[i + 1] << 8)
     if n:
         s += ord(data[i + 1])
     while s >> 16:
