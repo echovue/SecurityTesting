@@ -14,7 +14,7 @@ def icmp():
     data = struct.pack("!BBHHH", type, code, chksum, id, seq)
     print('Data: {}'.format(data))
     real_chksum = checksum(data)
-    icmp_pkt = struct.pack("!BBHHH", type, code, socket.htson(real_chksum), id, seq)
+    icmp_pkt = struct.pack("!BBHHH", type, code, socket.htons(real_chksum), id, seq)
     return icmp_pkt
 
 
